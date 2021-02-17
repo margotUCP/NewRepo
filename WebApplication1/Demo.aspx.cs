@@ -11,6 +11,120 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string connetionString;
+            SqlConnection cnn;
+
+            connetionString = @"Data Source=;Initial Catalog= ;User ID=;Password=";
+
+            cnn = new SqlConnection(connetionString);
+
+            cnn.Open();
+
+            SqlCommand command;
+            SqlDataReader dataReader;
+            String sql, Output = " ";
+            sql = "Select TutorialID,TutorialName from demotb";
+
+            command = new SqlCommand(sql, cnn);
+
+            dataReader = sqlquery.ExecuteReader();
+            while (dataReader.Read())
+            {
+                Output = Output + dataReader.GetValue(0) + "-" + dataReader.GetValue(1) + "</br>";
+            }
+
+            SqlCommand command;
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            String sql = "";
+
+            sql = "Insert into demotb(TutorialID,TutorialName) value(3, '" + "VB.Net +"')";
+
+
+            command = new SqlCommand(sql, cnn);
+            adapter.InsertCommand = new SqlCommand(sql, cnn);
+            adapter.InsertCommand.ExecuteNonQuery();
+
+            command.Dispose();
+
+
+            SqlCommand sqlquery;
+            SqlDataReader dataReader;
+            String Output = " ";
+            sql = "Select TutorialID,TutorialName from demotb";
+
+            sqlquery = new SqlCommand(sql, cnn);
+
+            dataReader = command.ExecuteReader();
+            while (dataReader.Read())
+            {
+                Output = Output + dataReader.GetValue(0) + "-" + dataReader.GetValue(1) + "</br>";
+            }
+
+
+            SqlCommand command;
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            String sql = "";
+
+            sql = "Update demotb set TutorialName='"VB.Net Complete"+"' where TutorialID=3";
+
+
+            command = new SqlCommand(sql, cnn);
+
+            adapter.InsertCommand = new SqlCommand(sql, cnn);
+            adapter.InsertCommand.ExecuteNonQuery;
+
+            command.Dispose(): 
+
+            SqlCommand sqlquery;
+            SqlDataReader dataReader;
+            String Output = " ";
+            sql = "Select TutorialID,TutorialName from demotb";
+
+            sqlquery = new SqlCommand(sql, cnn);
+
+            dataReader = command.ExecuteReader();
+
+            while (dataReader.Read())
+            {
+                Output = Output + dataReader.GetValue(0) + "-" + dataReader.GetValue(1) + "</br>";
+            }
+
+            SqlCommand command;
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            String sql = "";
+
+            sql = "Delete demotb where TutorialID=3";
+
+            command = new SqlCommand(sql, cnn);
+
+            adapter.DeleteCommand = new SqlCommand(sql, cnn);
+            adapter.DeleteCommand.ExecuteNonQuery;
+
+            SqlCommand sqlquery;
+            SqlDataReader dataReader;
+            String Output = "";
+            sql = "Select TutorialID,TutorialName from demotb";
+
+            sqlquery = new SqlCommand(sql, cnn);
+
+            dataReader = command.ExecuteReader();
+
+            while (dataReader.Read())
+            {
+                Output = Output + dataReader.GetValue(0) + "-" + dataReader.GetValue(1) + "</br>";
+            }/**/
+
+            Response.Write(Output);
+            dataReader.Close();
+            command.dispose();
+            
+
+
+
+            Response.Write("Connection MAde");
+            conn.Close();
+
+
 
         }
 
